@@ -2,12 +2,10 @@ const ERC721MintableComplete = artifacts.require('CustomERC721Token');
 
 contract('TestERC721Mintable', accounts => {
 
-    const contractOwner = accounts[0];
-    const accountOne = accounts[1];
-    const accountTwo = accounts[2];
+    const [contractOwner, accountOne, accountTwo]  = accounts;
 
     const name = 'Udacity';
-    const symbol = 'NanoDegree';
+    const symbol = 'UDC';
     const baseTokenURI = 'https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/';
 
     // TODO 매번 new를 하면 계속 컨트랙트를 배포하는 것이기 때문에 비효율적이지 않을까? 클라이언트 로그를 통해 확인해보고 deployed() 활용방안 모색
