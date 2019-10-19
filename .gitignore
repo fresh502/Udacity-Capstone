@@ -3,3 +3,5 @@ build
 zokrates
 .env
 .DS_Store
+eth-contracts/contracts/verifier.sol
+contractAddress.json

@@ -3,7 +3,7 @@ pragma solidity >=0.4.21 <0.6.0;
 import '@openzeppelin/contracts/math/SafeMath.sol';
 import "./ERC721Mintable.sol";
 
-contract SquareVerifier {
+contract Verifier {
     function verifyTx(
         uint[2] memory a,
         uint[2] memory a_p,
@@ -21,7 +21,7 @@ contract SquareVerifier {
 contract SolnSquareVerifier is ERC721Metadata {
     using SafeMath for uint256;
 
-    SquareVerifier squareVerifier;
+    Verifier squareVerifier;
 
     uint256 tokenId;
 
@@ -70,7 +70,7 @@ contract SolnSquareVerifier is ERC721Metadata {
         ERC721Metadata(name, symbol, baseTokenURI)
         public
     {
-        squareVerifier = SquareVerifier(_squareVerifierAddr);
+        squareVerifier = Verifier(_squareVerifierAddr);
     }
 
     // TODO define a contract call to the zokrates generated solidity contract <Verifier> or <renamedVerifier>

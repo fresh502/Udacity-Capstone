@@ -2,7 +2,6 @@ App = {
     web3Provider: null,
     contracts: {},
     metamaskAccountID: "0x0000000000000000000000000000000000000000",
-    contractAddr: "0xCc5E7340089Ed559589190Db9b8cC34BE053E22E",
 
     init: async function () {
         /// Setup access to blockchain
@@ -45,19 +44,23 @@ App = {
                 console.log('Error:',err);
                 return;
             }
-            console.log('getMetaskID:',res);
+            console.log('getMetaskID:', res[0]);
             App.metamaskAccountID = res[0];
         })
     },
 
     initSol: function () {
         /// Source the truffle compiled smart contracts
-        var jsonSol='../eth-contracts/build/contracts/SolnSquareVerifier.json';
+        var jsonSol = '../eth-contracts/build/contracts/SolnSquareVerifier.json';
+        var jsonContract = '../contractAddress.json';
         
         /// JSONfy the smart contracts
         $.getJSON(jsonSol, function(data) {
             var web3 = new Web3(App.web3Provider);
-            App.contracts.Sol = new web3.eth.Contract(data.abi, App.contractAddr);
+            $.getJSON(jsonContract, function(contract) {
+                console.log(contract.address);
+                App.contracts.Sol = new web3.eth.Contract(data.abi, contract.address);
+            })
         });
 
         return App.bindEvents();
@@ -77,7 +80,7 @@ App = {
         var a, a_p, b, b_p, c, c_p, h, k, inputs;
         $.getJSON(jsonProof, function(data) {
             ({ proof: { a, a_p, b, b_p, c, c_p, h, k}, inputs } = data);
-            App.contracts.Sol.methods.addSolution(a, a_p, b, b_p, c, c_p, h, k, inputs).send({ from: App.metamaskAccountID })
+            App.contracts.Sol.methods.addSolution(a, a_p, b, b_p, c, c_p, h, k, inputs).send({ from: App.metamaskAccountID, gas: 2000000 })
             .on('error', console.error);
         })
     },

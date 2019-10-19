@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SquareVerifier = artifacts.require('SquareVerifier');
+const SquareVerifier = artifacts.require('Verifier');
 const SolnSquareVerifier = artifacts.require('SolnSquareVerifier');
 
 contract('SolnSquareVerifier', accounts => {
