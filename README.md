@@ -46,8 +46,7 @@ npm run dev
 On browser you can add solution and mint.
 You have to run compute-witness, generate-proof before each add solution and mint
 
+## Specification
 
-
-
-
-
+* [Contract address](https://rinkeby.etherscan.io/address/0xcc5e7340089ed559589190db9b8cc34be053e22e)
+* [OpenSea MarketPlace Storefront link](https://rinkeby.opensea.io/storefront/udacity/)
