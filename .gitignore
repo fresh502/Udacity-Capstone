@@ -2,3 +2,4 @@ node_modules
 build
 zokrates
 .env
+.DS_Store
